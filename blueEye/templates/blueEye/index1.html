@@ -1,0 +1,61 @@
+ <body>
+    <div id="map"></div>
+<style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+</style>
+<script>
+
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom        : 15,
+    {% if cellinfo %}    
+    center: {lat: {{cellinfo.0.long}}, lng: {{cellinfo.0.lat}}},
+    {% endif %}
+    mapTypeId: google.maps.MapTypeId.TERRAIN
+  });
+
+  {% for cell in cellinfo %}
+        var flightPlanCoordinates = [
+    {% for lat,long in cell.geo.geo_polygon %}
+        {lat:{{long}},lng:{{lat}}},
+    {% endfor %}
+        {lat:{{cell.long}},lng:{{cell.lat}}}
+        ]
+
+    var flightPath = new google.maps.Polyline({
+        path: flightPlanCoordinates,
+        strokeColor: '#0000FF',
+        strokeOpacity: 1.0,
+        strokeWeight: 2,
+        fillColor: '#FFFF00',
+        fillOpacity: 0.8,
+    });
+
+  flightPath.setMap(map);
+  {% endfor %}
+}
+        <!--#geodesic: true,-->
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?callback=initMap">
+</script>
+</body>
+<!--
+{% if cellinfo %}
+    <ul>
+    {% for cell in cellinfo %}
+        <li><a href="/blueEye/{{ cell.name}}/">{{ cell.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No cells available<p>
+{% endif %}
+-->

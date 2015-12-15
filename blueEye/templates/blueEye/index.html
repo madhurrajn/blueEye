@@ -1,0 +1,121 @@
+{% extends 'base.html' %} 
+<body>
+{% block heading %}<div> Normal Map </div> {% endblock %}
+{% block extrajs %}
+<script type="text/javascript">
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom        : 12,
+    {% if cellinfo %}    
+    center: {lat: {{cellinfo.0.lat}}, lng: {{cellinfo.0.long}}},
+    {% endif %}
+    mapTypeId: google.maps.MapTypeId.TERRAIN
+  });
+  {% for cell in cellinfo %}
+    var flightPlanCoordinates = [
+    {% for lat,long in cell.geo.geo_polygon %}
+            {lat:{{lat}},lng:{{long}}},
+    {% endfor %}
+    {lat:{{cell.lat}},lng:{{cell.long}}}
+    ]
+
+    var flightPath = new google.maps.Polygon({
+        paths: flightPlanCoordinates,
+        geodesic: true,
+        strokeColor: '#0000FF',
+        strokeOpacity: 1.0,
+        strokeWeight: 2,
+        fillColor: '#000055',
+        fillOpacity: 0.2,
+        lat : {{cell.lat}},
+        long : {{cell.long}},
+        name : '{{cell.name}}',
+        azimuth : {{cell.azimuth}},
+        uarfcn : {{cell.uarfcn}},
+        bw : {{cell.bw}},
+        radius : {{cell.radius}}
+    });
+
+  flightPath.setMap(map);
+  infoWindow = new google.maps.InfoWindow();
+  addListenersOnPolygon(map, flightPath)
+  {% endfor %}
+}
+function addToCompare(polygon){
+}
+
+var addListenersOnPolygon = function(map, polygon){
+    google.maps.event.addListener(polygon, 'click', function(event){
+        var contentStr = '<b>Name: '+polygon.name+'</b><br>'+
+        '<b>Latitude : '+polygon.lat+'</b><br>'+
+        '<b>Longitude: '+polygon.long+'</b><br>'+
+        '<b>Radius   : '+polygon.radius+'</b><br>'+
+        '<b>Azimuth  : '+polygon.azimuth+'</b><br>'+
+        '<b>Uarfcn   : '+polygon.uarfcn+'</b><br>'+
+        '<b>Beamwidth: '+polygon.bw+'</b><br>'+
+        '<form action="{% url 'blueEye:index' %}" method="post">' + 
+        "{% csrf_token %}" + 
+        "<input type='hidden' name='CellName' value="+polygon.name+
+        " ><input type='hidden' name='postMethod' value='AddToCompare'>"+
+        '<input type="submit"  value="Add to Compare"/>   '+
+        '</form> <input type="button" value="Modify"/>'
+        infoWindow.setContent(contentStr);
+        infoWindow.setPosition(event.latLng);
+        infoWindow.open(map);
+    });
+}
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?callback=initMap">
+</script>
+{% endblock %}
+{% block rootcontainer %}
+    <div id="map"></div>
+<style>
+      html, body {
+        height: 92%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+</style>
+
+{% endblock %}
+{% block sidebar %}
+    {% if cell_list %}
+    <style type="text/css">
+        #sidebar { float:left; top:55px; width:180px; background:#333333; min-height: 100%; position: relative; }
+    </style>
+    <div id="sidebar"> 
+    <table>
+    {% for cell_name in cell_list %}
+    <tr><td><div><font color="white">{{cell_name}}</font></div></td>
+    <td>
+    <form action="{% url 'blueEye:index' %}" method="post">
+    {% csrf_token %}
+    <input type='hidden' name='CellName' value={{cell_name}}>
+    <input type='hidden' name='postMethod' value='CompareDelete'>
+    <p class="deletelink-box"><input type="submit" class="default" value="Delete" ></input></p>
+    </form>
+    </td>
+    </tr>
+    {% endfor %}
+    </table>
+    </div>
+    {% endif %}
+{% endblock %}
+</body>
+<!--
+{% if cellinfo %}
+    <ul>
+    {% for cell in cellinfo %}
+        <li><a href="/blueEye/{{ cell.name}}/">{{ cell.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No cells available<p>
+{% endif %}
+-->
