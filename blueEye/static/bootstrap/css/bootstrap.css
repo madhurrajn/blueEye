@@ -5624,7 +5624,7 @@ a.list-group-item.active:focus .list-group-item-text {
 
 .panel {
   margin-bottom: 20px;
-  background-color: #ffffff;
+  background-color: #333333;
   border: 1px solid transparent;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -7099,3 +7099,109 @@ td.visible-print {
     display: none !important;
   }
 }
+
+header {
+    background: #000;
+    color: #fff;
+    height: 20px;
+    position: relative;
+    padding: 10px;
+
+    -moz-animation-name: dropHeader;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: ease-in;
+    -moz-animation-duration: 0.3s;
+
+    -webkit-animation-name: dropHeader;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-duration: 0.3s;
+
+    animation-name: dropHeader;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.3s;
+}
+header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+header ul li{
+    display: inline-block;
+    margin-right: 20px
+}
+@-moz-keyframes dropHeader {
+    0% {
+        -moz-transform: translateY(-40px);
+    }
+    100% {
+        -moz-transform: translateY(0);
+    }
+}
+@-webkit-keyframes dropHeader {
+    0% {
+        -webkit-transform: translateY(-40px);
+    }
+    100% {
+        -webkit-transform: translateY(0);
+    }
+}
+@keyframes dropHeader {
+    0% {
+        transform: translateY(-40px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+.slidesidebar {
+    background: #000000;
+    color: #000fff;
+    left:0
+    width : 40px
+    height: 20px;
+    top : 20px
+    position: absolute;
+    padding: 10px;
+
+    -moz-animation-name: dropHeader;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: ease-in;
+    -moz-animation-duration: 0.3s;
+
+    -webkit-animation-name: dropHeader;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-duration: 0.3s;
+
+    animation-name: dropHeader;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.3s;
+}
+@-moz-keyframes dropHeader {
+    0% {
+        -moz-transform: translateX(-40px);
+    }
+    100% {
+        -moz-transform: translateX(20);
+    }
+}
+@-webkit-keyframes dropHeader {
+    0% {
+        -webkit-transform: translateX(-40px);
+    }
+    100% {
+        -webkit-transform: translateX(20);
+    }
+}
+@keyframes dropHeader {
+    0% {
+        transform: translateX(-40px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+

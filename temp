@@ -7,4 +7,4 @@ var addListenersOnPolygon = function(polygon)
     }
 }-->
 
-  <!-- addListenersOnPolygon(flightPath) -->
+ background-color:transparent; /* Chrome,Safari4+ */ background: -webkit-linear-gradient(top, #f4f4f4 1%, #ededed 100%); /* Chrome10+,Safari5.1+ */ background: -o-linear-gradient(top, #f4f4f4 1%, #ededed 100%); <!-- addListenersOnPolygon(flightPath) -->

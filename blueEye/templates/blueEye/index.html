@@ -9,7 +9,20 @@ function initMap() {
     {% if cellinfo %}    
     center: {lat: {{cellinfo.0.lat}}, lng: {{cellinfo.0.long}}},
     {% endif %}
-    mapTypeId: google.maps.MapTypeId.TERRAIN
+    mapTypeId: google.maps.MapTypeId.TERRAIN,
+    mapTypeControlOptions: {
+        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+        position: google.maps.ControlPosition.TOP_CENTER
+    },
+    zoomControl: true,
+    zoomControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_CENTER
+    },
+    scaleControl: true,
+    streetViewControl: true,
+    streetViewControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_TOP
+    },
   });
   {% for cell in cellinfo %}
     var flightPlanCoordinates = [
@@ -58,7 +71,7 @@ var addListenersOnPolygon = function(map, polygon){
         "<input type='hidden' name='CellName' value="+polygon.name+
         " ><input type='hidden' name='postMethod' value='AddToCompare'>"+
         '<input type="submit"  value="Add to Compare"/>   '+
-        '</form> <input type="button" value="Modify"/>'
+        ' <input type="button" value="Modify"/></form>'
         infoWindow.setContent(contentStr);
         infoWindow.setPosition(event.latLng);
         infoWindow.open(map);
@@ -70,42 +83,47 @@ var addListenersOnPolygon = function(map, polygon){
         src="https://maps.googleapis.com/maps/api/js?callback=initMap">
 </script>
 {% endblock %}
-{% block rootcontainer %}
-    <div id="map"></div>
+{% block rootcontainer %}    
 <style>
-      html, body {
-        height: 92%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-      }
+#map_wrapper { width:100%; height:100% position:relative;overflow:hidden; max-width:100%}
+#map {  top:0; left:0; position:absolute; width: 100%; height: 100%}
+#over_map {  position: relative;  z-index: 10; top:20% }
+input[type=submit] { border-radius: 5px; border: 0;  font-family: Tahoma;  background:#AAAAAA ; -webkit-transition: width 50ms, height 50ms; width:80px; height:26px}
+input[type=submit]:hover { background: #AAAAAA; width : 82px; height : 26px; } wrap { margin: 50px; }
+#tableStyle {margin-top:10%; width:30%;}
+#rowStyle {margin-left:3px; width : 30%; display:table-row; border:1px solid transparent; z-index:20; border:5px solid rgba(,200,200,1);}
+#rowStyle:hover {display:table-row;border:1px solid black }
+#colStyle1 {display:table-cell;-webkit-transition: width 50ms, height 50ms; width:80px; height:26px; background-color:#223344; opacity:0.5}
+#colStyle {display:table-cell;-webkit-transition: width 50ms, height 50ms; width:80px; height:26px; }
+#colStyle_header {display:table-cell;background-color:#223344;opacity:.6}
 </style>
-
-{% endblock %}
-{% block sidebar %}
-    {% if cell_list %}
-    <style type="text/css">
-        #sidebar { float:left; top:55px; width:180px; background:#333333; min-height: 100%; position: relative; }
-    </style>
-    <div id="sidebar"> 
-    <table>
-    {% for cell_name in cell_list %}
-    <tr><td><div><font color="white">{{cell_name}}</font></div></td>
-    <td>
-    <form action="{% url 'blueEye:index' %}" method="post">
-    {% csrf_token %}
-    <input type='hidden' name='CellName' value={{cell_name}}>
-    <input type='hidden' name='postMethod' value='CompareDelete'>
-    <p class="deletelink-box"><input type="submit" class="default" value="Delete" ></input></p>
-    </form>
-    </td>
-    </tr>
-    {% endfor %}
-    </table>
+<div id="map_wrapper">
+<div id="map"></div>
+{% if cell_list %}
+    <div id="over_map">
+        <div id="tableStyle">
+            <div id="rowStyle">
+                <div id="colStyle_header"> <font color="white">Compare Cell List</font> </div>
+             </div>
+        </div>
+        <div id="tableStyle1">
+        {% for cell_name in cell_list %}
+            <div id="rowStyle">
+                <div id="colStyle1"> <font color="white">{{cell_name}}</font> </div>
+                <div id="colStyle"> 
+                    <form action="{% url 'blueEye:index' %}" method="post">
+                    {% csrf_token %}
+                    <input type='hidden' name='CellName' value={{cell_name}}>
+                    <input type='hidden' name='postMethod' value='CompareDelete'>
+                    <input type="submit"  value="Delete" ></input>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+{% endif %}
     </div>
-    {% endif %}
+</div>
 {% endblock %}
 </body>
 <!--
