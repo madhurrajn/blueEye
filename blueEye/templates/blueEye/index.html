@@ -12,7 +12,7 @@ function initMap() {
     mapTypeId: google.maps.MapTypeId.TERRAIN,
     mapTypeControlOptions: {
         style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-        position: google.maps.ControlPosition.TOP_CENTER
+        position: google.maps.ControlPosition.RIGHT_TOP
     },
     zoomControl: true,
     zoomControlOptions: {
@@ -70,8 +70,12 @@ var addListenersOnPolygon = function(map, polygon){
         "{% csrf_token %}" + 
         "<input type='hidden' name='CellName' value="+polygon.name+
         " ><input type='hidden' name='postMethod' value='AddToCompare'>"+
-        '<input type="submit"  value="Add to Compare"/>   '+
-        ' <input type="button" value="Modify"/></form>'
+        '<input type="submit"  value="Compare"/> </form>  '+
+        '<form action="{% url 'blueEye:showSchedule' %}" method="post">' + 
+        "{% csrf_token %}" + 
+        "<input type='hidden' name='CellName' value="+polygon.name+
+        " ><input type='hidden' name='postMethod' value='showSchedule'>"+
+        ' <input type="submit" value="Schedule"/></form>'
         infoWindow.setContent(contentStr);
         infoWindow.setPosition(event.latLng);
         infoWindow.open(map);
@@ -90,12 +94,13 @@ var addListenersOnPolygon = function(map, polygon){
 #over_map {  position: relative;  z-index: 10; top:20% }
 input[type=submit] { border-radius: 5px; border: 0;  font-family: Tahoma;  background:#AAAAAA ; -webkit-transition: width 50ms, height 50ms; width:80px; height:26px}
 input[type=submit]:hover { background: #AAAAAA; width : 82px; height : 26px; } wrap { margin: 50px; }
-#tableStyle {margin-top:10%; width:30%;}
-#rowStyle {margin-left:3px; width : 30%; display:table-row; border:1px solid transparent; z-index:20; border:5px solid rgba(,200,200,1);}
+#tableStyle {margin-top:5%; width:30%; margin-left:2px}
+#tableStyle1 { width:30%; margin-left:2px}
+#rowStyle {margin-left:3px; width : 40%; display:table-row; border:1px solid transparent; z-index:20; border:5px solid rgba(,200,200,1);}
 #rowStyle:hover {display:table-row;border:1px solid black }
 #colStyle1 {display:table-cell;-webkit-transition: width 50ms, height 50ms; width:80px; height:26px; background-color:#223344; opacity:0.5}
-#colStyle {display:table-cell;-webkit-transition: width 50ms, height 50ms; width:80px; height:26px; }
-#colStyle_header {display:table-cell;background-color:#223344;opacity:.6}
+#colStyle {display:table-cell;-webkit-transition: width 50ms, height 50ms; width:80px; height:26px; background-color:#223344; opacity:0.7; }
+#colStyle_header {display:table-cell;background-color:#223344;opacity:.6; width:160px}
 </style>
 <div id="map_wrapper">
 <div id="map"></div>
@@ -126,14 +131,4 @@ input[type=submit]:hover { background: #AAAAAA; width : 82px; height : 26px; } w
 </div>
 {% endblock %}
 </body>
-<!--
-{% if cellinfo %}
-    <ul>
-    {% for cell in cellinfo %}
-        <li><a href="/blueEye/{{ cell.name}}/">{{ cell.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No cells available<p>
-{% endif %}
--->
+

@@ -7,7 +7,15 @@ from .core import getCellBeamForm
 
 # Create your views here.
 
+def showSchedule(request):
+    cell_list = CellInfo.objects.all()
+    print "showSchedule Called"
+    template = loader.get_template('blueEye/showSchedule.html')
+    context = RequestContext(request)
+    return HttpResponse(template.render(context))
+
 def index(request):
+    print "Index Method called"
     cellinfo = []
     cell_list = CellInfo.objects.all()
     compare_cells = CompareCell.objects.all()

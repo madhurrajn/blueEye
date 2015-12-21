@@ -12,6 +12,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^/showSchedule/$', views.showSchedule, name='showSchedule'),
     url(r'^$', views.addNewCell, name='addNewCell'),
     url(r'^empty$', empty, name='empty')
 ]
