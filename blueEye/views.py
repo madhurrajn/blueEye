@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import CellInfo, CompareCell
+from .models import CellInfo, CompareCell, busyHourDaily
 from .core import Cell
 from django.template import RequestContext, loader
 from django.http import HttpResponse
@@ -9,9 +9,19 @@ from .core import getCellBeamForm
 
 def showSchedule(request):
     cell_list = CellInfo.objects.all()
+    busyHourList = {}
     print "showSchedule Called"
     template = loader.get_template('blueEye/showSchedule.html')
-    context = RequestContext(request)
+    if request.method == 'POST':
+        print request.POST
+        cell_name = request.POST.get("CellName", "")
+        print cell_name
+        busyHourList = busyHourDaily.objects.filter(busyHour=cell_name)
+        print busyHourList
+        for busyHour in busyHourList:
+            print busyHour
+    context = RequestContext(request, 
+              {'busyHourList':busyHourList})
     return HttpResponse(template.render(context))
 
 def index(request):

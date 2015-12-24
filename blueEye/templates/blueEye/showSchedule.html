@@ -4,6 +4,69 @@
 {% block extrajs %}
 {% endblock %}
 {% block rootcontainer %}    
+<style>
+#sf {background: url('http://static.tumblr.com/f1skqpy/Oxbn13qun/search_icon.png') #f5f5f5 left center no-repeat; background-size: 20px 20px;}
+#schedulestyle {margin-top:10% }
+#schedLeftPanel {margin-top:0; width:20%}
+</style>
+<div id="schedulestyle">
+<div id="schedLeftPanel">
+</div>
+<form action="{% url 'blueEye:showSchedule' %}" method="post" class="sfm" name="theform">
+    {% csrf_token %}
+    <input type="text" name="CellName" value="" id="sf"/>
+    <input type="submit" value="Search" id="sb"/>
+</form>
+<div>
+    <table class="zui-table zui-table-horizontal zui-table-highlight zui-table-zebra zui-table-rounded">
+        <thead>
+            <tr>
+                <th>
+                    Cell Name
+                </th>
+                <th>
+                    Start Hour
+                </th>
+                <th>
+                    End Hour
+                </th>
+                <th>
+                    Population Density
+                </th>
+                <th>
+                    Actions
+                </th>
+             </tr>
+        </thead>
+        <tbody>
+        {% for busyHour in busyHourList %}
+        <tr>
+            <td>
+                {{busyHour.busyHour}}
+            </td>
+            <td>
+                {{busyHour.startHour}}
+            </td>
+            <td>
+                {{busyHour.endHour}}
+            </td>
+            <td>
+                {{busyHour.density}}
+            </td>
+            <td>
+                <a href="/blueEye/showSchedule/change/{{busyHour.busyHour}}/{{busyHour.id}}" >
+                    <img src="/static/admin/img/icon_changelink.gif" width="10" height="10" alt="Add">
+                </a>
+                <a href="/blueEye/showSchedule/add/{{busyHour.busyHour}}/{{busyHour.id}}" >
+                    <img src="/static/admin/img/icon_deletelink.gif" class="deletelink"/>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+<div display:table>
 {% endblock %}
 </body>
-
