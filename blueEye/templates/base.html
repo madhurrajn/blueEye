@@ -111,9 +111,6 @@
         </nav>
 
         {% block sidebar %}{% endblock %}
-        {% block rootcontainer %}
-        {% endblock %}
-
         <!-- FOOTER -->
         <div class="footer">
             <div class="container">
@@ -131,12 +128,17 @@
 
         <!-- JavaScript -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="{% static 'jquery/jquery.min.js' %}"></script>
         <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
         <script src="{% static 'momentjs/moment.min.js' %}"></script>
         <script src="{% static 'datetimepicker/js/bootstrap-datetimepicker.min.js' %}"></script>
+        <script src="{% static 'jquery/jquery.min.js' %}"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
         <script src="{% static 'jquery-validation/jquery.validate.js' %}"></script>
+        <script src="{% static 'highcharts/js/highcharts.js' %}"></script>
         {% block extrajs %}{% endblock %}
+        {% block rootcontainer %}
+        {% endblock %}
+
 
         {% if google_analytics_tracking_id %}
         <!-- Asynchronous Google Analytics snippet. mathiasbynens.be/notes/async-analytics-snippet -->

@@ -68,3 +68,4 @@ class busyHourDaily(models.Model):
     busyHour = models.ForeignKey(CellInfo)
     def __unicode__(self):
         return str(self.busyHour)
+

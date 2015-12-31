@@ -1,4 +1,7 @@
 {% extends 'base.html' %} 
+{% load staticfiles %}
+{% load chartit %}
+{{ sched_chart }}
 <body>
 {% block heading %}<div> Normal Map </div> {% endblock %}
 {% block extrajs %}
@@ -35,16 +38,78 @@
                 </th>
                 <th>
                     Actions
+                    {% if cell_name %}
+                    <a href="/blueEye/showSchedule/add/{{cell_name}}" />
+                    <img src="/static/admin/img/icon_addlink.gif" width="10" height="10" alt="Add">
+                    Add Schedule
+                    </a>
+                    {% endif %}
                 </th>
              </tr>
         </thead>
         <tbody>
+        {% if addSchedule %}
+        <tr>
+            <form action="{% url 'blueEye:saveSchedule' %}" method="post" class="sfm" name="theform">
+            <td>
+                {{cell_name}}
+            </td>
+            <td contenteditable="true">
+                <input type="text" name="StartHour" value="" />
+            </td>
+            <td>
+                <input type="text" name="EndHour" value="" />
+            </td>
+            <td >
+                <input type="text" name="popDen" value="" />
+            </td>
+            <td>
+                {% csrf_token %}
+                <input type="hidden" name="CellName" value="{{cell_name}}" id="sf"/>
+                <input type="hidden" name="identity" value="9999" id="sf"/>
+                <input type="image" src="{% static 'img/save.gif' height="10" width="10" %}"  />
+                </a>
+            </td>
+            </form>
+        </tr>
+        {% endif %}
         {% for busyHour in busyHourList %}
+            {% ifequal busyHour.id elem.id %}
+        <tr>
+            <form action="{% url 'blueEye:saveSchedule' %}" method="post" class="sfm" name="theform">
+            <td>
+                {{busyHour.busyHour}}
+            </td>
+            <td contenteditable="true">
+                <input type="text" name="StartHour" value="{{busyHour.startHour}}" />
+            </td>
+            <td>
+                <input type="text" name="EndHour" value="{{busyHour.endHour}}" />
+            </td>
+            <td >
+                <input type="text" name="popDen" value="{{busyHour.density}}" />
+            </td>
+            <td>
+                <a href="/blueEye/showSchedule/change/{{busyHour.busyHour}}/{{busyHour.id}}" />
+                    <img src="/static/admin/img/icon_changelink.gif" width="10" height="10" alt="Add">
+                </a>
+                <a href="/blueEye/showSchedule/delete/{{busyHour.busyHour}}/{{busyHour.id}}" >
+                    <img src="/static/admin/img/icon_deletelink.gif" class="deletelink"/>
+                </a>
+                {% csrf_token %}
+                <input type="hidden" name="CellName" value="{{busyHour.busyHour}}" id="sf"/>
+                <input type="hidden" name="identity" value="{{busyHour.id}}" id="sf"/>
+                <input type="image" src="{% static 'img/save.gif' height="10" width="10" %}"  />
+                </a>
+            </td>
+            </form>
+        </tr>
+        {% else %}
         <tr>
             <td>
                 {{busyHour.busyHour}}
             </td>
-            <td>
+            <td contenteditable="true">
                 {{busyHour.startHour}}
             </td>
             <td>
@@ -57,16 +122,18 @@
                 <a href="/blueEye/showSchedule/change/{{busyHour.busyHour}}/{{busyHour.id}}" >
                     <img src="/static/admin/img/icon_changelink.gif" width="10" height="10" alt="Add">
                 </a>
-                <a href="/blueEye/showSchedule/add/{{busyHour.busyHour}}/{{busyHour.id}}" >
+                <a href="/blueEye/showSchedule/delete/{{busyHour.busyHour}}/{{busyHour.id}}" >
                     <img src="/static/admin/img/icon_deletelink.gif" class="deletelink"/>
                 </a>
+
             </td>
         </tr>
+    {% endifequal %}
     {% endfor %}
         </tbody>
     </table>
 </div>
 </div>
-<div display:table>
+<div id='sched_chart'>{{sched_chart|load_charts:'sched_chart'}}<p>Iam here</p></div>
 {% endblock %}
 </body>
