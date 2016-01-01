@@ -9,12 +9,10 @@
 {% block rootcontainer %}    
 <style>
 #sf {background: url('http://static.tumblr.com/f1skqpy/Oxbn13qun/search_icon.png') #f5f5f5 left center no-repeat; background-size: 20px 20px;}
-#schedulestyle {margin-top:10% }
+#schedulestyle {margin-top:10% ; margin-left:25%}
 #schedLeftPanel {margin-top:0; width:20%}
 </style>
 <div id="schedulestyle">
-<div id="schedLeftPanel">
-</div>
 <form action="{% url 'blueEye:showSchedule' %}" method="post" class="sfm" name="theform">
     {% csrf_token %}
     <input type="text" name="CellName" value="" id="sf"/>

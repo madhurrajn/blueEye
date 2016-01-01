@@ -7262,3 +7262,8 @@ header ul li{
     border-radius: 0 0 10px 0;
 }
 
+.left-column-empty
+{
+    width: 200px;
+    height:80%
+}

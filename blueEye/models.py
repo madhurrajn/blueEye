@@ -69,3 +69,20 @@ class busyHourDaily(models.Model):
     def __unicode__(self):
         return str(self.busyHour)
 
+class RoundClock(models.Model):
+    hour = models.IntegerField(
+        default = 0,
+        validators = [
+            MaxValueValidator(23),
+            MinValueValidator(0)
+        ]
+    )
+    density = models.IntegerField(
+    default = 99,
+        validators = [
+            MaxValueValidator(99),
+            MinValueValidator(5)
+        ]
+    )
+    cell_name = models.CharField(max_length=99,
+        default='default')

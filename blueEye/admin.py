@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin import AdminSite
-from .models import CellInfo, CompareCell, busyHourDaily
+from .models import CellInfo, CompareCell, busyHourDaily, RoundClock
 from django.utils.translation import ugettext_lazy
 
 # Register your models here.
@@ -22,3 +22,4 @@ admin.site.register(CellInfo)
 admin_site.register(CellInfo)
 admin_site.register(CompareCell)
 admin_site.register(busyHourDaily)
+admin_site.register(RoundClock)

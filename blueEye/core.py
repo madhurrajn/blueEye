@@ -6,6 +6,9 @@ from .models import CellInfo, CompareCell
 import math
 import geopy
 from geopy.distance import VincentyDistance
+import logging
+
+logging.basicConfig(format='%(asctime)s {%(filename)s: %(lineno)d} %(funcName)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
 
 #from figures import SIZE
 
@@ -170,14 +173,7 @@ class Plotter:
 
     def updateCellsToPlot(self):
         for key,cell in cells_g.items():
-            #polygon = Polygon(self.ext, list(cell.geo.polygon.exterior.coords))
-            #self.polygons.append(plot_vertex_list)
             self.plotCoords(cell.geo.polygon.exterior)
-        #self.polygon = Polygon(self.ext, self.polygons)
-        #self.plotCoords()
-        #patch = PolygonPatch(self.polygon, facecolor=self.plotterColor(self.polygon), edgecolor=self.plotterColor(self.polygon), alpha=0.5, zorder=2)
-        #self.ax.add_patch(patch)
-
 
     def display(self):
         pyplot.xlim(5,40)
@@ -224,9 +220,28 @@ def getCellBeamForm(compare):
                 cells_g[str(cell.cell_name)]=Cell(cell.cell_name, cell.lattitude, cell.longitude, cell.azimuth, cell.beamwidth, cell.radius, cell.uarfcn, 0.3)
     updateCoSectors(cells_g)
     for key,cell in cells_g.items():
-        print "Beam form for "+str(cell.name)
         cell.geo.generate_beam_form()
     return cells_g;
+
+def getNeighbors(cell_name):
+    neighbor_list = []
+    cell_list = CellInfo.objects.all()
+    cells_g.clear()
+    for cell in cell_list:
+        cells_g[str(cell.cell_name)]=Cell(cell.cell_name, cell.lattitude, cell.longitude, cell.azimuth, cell.beamwidth, cell.radius, cell.uarfcn, cell.radius)
+    pivot = cells_g[cell_name]
+    pivot.geo.generate_beam_form()
+    for key, cell in cells_g.items():
+        if key == cell_name:
+            continue
+        else:
+            cell.geo.generate_beam_form()
+            if pivot.geo.polygon.intersects(cell.geo.polygon):
+                logging.debug("Neighbor Cell %s intersection found", key)
+                neighbor_list.append(cell)
+            else:
+                logging.debug("Neighbor Cell %s intersection not found", key)
+    return (pivot, neighbor_list)
 
 def readCellData():
     for data in SampleCellData:

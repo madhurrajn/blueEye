@@ -3,7 +3,7 @@ from .models import CellInfo, CompareCell, busyHourDaily
 from .core import Cell
 from django.template import RequestContext, loader
 from django.http import HttpResponse
-from .core import getCellBeamForm
+from .core import getCellBeamForm, getNeighbors
 from schedProc import reArrangeSched, schedule_chart
 import logging
 
@@ -32,13 +32,14 @@ def saveSchedule(request):
             print "Here"
             elem.startHour = startHour
             elem.endHour = endHour 
-            elem.pd = pd 
+            elem.density = int(pd)
             print pd
             cell_obj = CellInfo.objects.get(cell_name=cell_name)
             elem.busyHour = cell_obj
             elem.save()
+            logging.debug("Saving New Element pd %d", int(pd))
             reArrangeSched(elem, cell_obj)
-    cht = schedule_chart(request)
+    cht = schedule_chart(request,cell_name)
     template = loader.get_template('blueEye/showSchedule.html')
     busyHourList = busyHourDaily.objects.filter(busyHour=cell_name)
     context = RequestContext(request, 
@@ -51,10 +52,12 @@ def addSchedule(request, cell_name):
     busyHourList = {}
     template = loader.get_template('blueEye/showSchedule.html')
     busyHourList = busyHourDaily.objects.filter(busyHour=cell_name)
+    cht = schedule_chart(request,cell_name)
     context = RequestContext(request, 
               {'busyHourList':busyHourList,
                 'cell_name':cell_name,
-                'addSchedule':True})
+                'addSchedule':True,
+                'sched_chart':cht})
     return HttpResponse(template.render(context))
 
 
@@ -68,9 +71,11 @@ def deleteSchedule(request, cell_name, pk):
     reArrangeSched(0,cell_obj)
     template = loader.get_template('blueEye/showSchedule.html')
     busyHourList = busyHourDaily.objects.filter(busyHour=cell_name)
+    cht = schedule_chart(request,cell_name)
     context = RequestContext(request, 
               {'busyHourList':busyHourList,
-               'cell_name':cell_name })
+               'cell_name':cell_name,
+               'sched_chart':cht})
     return HttpResponse(template.render(context))
 
 def changeSchedule(request, cell_name, pk):
@@ -78,11 +83,12 @@ def changeSchedule(request, cell_name, pk):
     template = loader.get_template('blueEye/showSchedule.html')
     busyHourList = busyHourDaily.objects.filter(busyHour=cell_name)
     elem = busyHourDaily.objects.get(pk=pk)
-    print elem
+    cht = schedule_chart(request,cell_name)
     context = RequestContext(request, 
               {'busyHourList':busyHourList,
                'cell_name':cell_name,
-              'elem':elem})
+              'elem':elem,
+              'sched_chart':cht})
     return HttpResponse(template.render(context))
 
 def showSchedule(request):
@@ -93,7 +99,7 @@ def showSchedule(request):
     if request.method == 'POST':
         cell_name = request.POST.get("CellName", "")
         busyHourList = busyHourDaily.objects.filter(busyHour=cell_name)
-    sched_chart = schedule_chart(request)
+    sched_chart = schedule_chart(request,cell_name)
     print sched_chart.datasource
     context = RequestContext(request, 
               {'busyHourList':busyHourList,
@@ -148,6 +154,19 @@ def index(request):
     context = RequestContext(request, {
         'cellinfo': cellinfo,
         'cell_list': cell_list})
+    return HttpResponse(template.render(context))
+
+def neighborInfo(request):
+    template = loader.get_template('blueEye/neighborInfo.html')
+    cell_name = ""
+    pivotCell = ""
+    neighbor_list = []
+    if request.method == 'POST':
+        cell_name = request.POST.get("CellName", "")
+        pivotCell,neighbor_list = getNeighbors(cell_name)
+    context = RequestContext(request, {
+        'pivotCell': pivotCell,
+        'neighbor_list': neighbor_list})
     return HttpResponse(template.render(context))
 
 def empty(request):

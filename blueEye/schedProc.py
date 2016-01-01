@@ -1,4 +1,4 @@
-from .models import CellInfo, CompareCell, busyHourDaily
+from .models import CellInfo, CompareCell, busyHourDaily, RoundClock
 from chartit import DataPool, Chart
 import logging
 
@@ -76,14 +76,29 @@ def reArrangeSched(elem, cell_obj):
         if sched.id not in idlist:
             logging.error("Deleting sched id %d", sched.id)
             sched.delete()
+    for sched in busyHourList:
+        for hour in range(sched.startHour, sched.endHour):
+            clockdict[hour] = (sched.density, sched.id) 
+    roundClock = RoundClock.objects.filter(cell_name=cell_obj.cell_name)
+    for rc in roundClock:
+        rc.delete()
+    for hour in range(0,24):
+        den, id = clockdict[hour]
+        if den == 999:
+            den = 99
+        rc = RoundClock.objects.create(cell_name=cell_obj.cell_name, hour=hour, density=den )
+        logging.debug("Creating Round Clock (%s, %d, %d)", cell_obj.cell_name, hour, den)
 
 
-def schedule_chart(request):
+def schedule_chart(request, cell_name):
+    logging.debug("Getting chart for %s", cell_name)
+    cell_obj = RoundClock.objects.filter(cell_name=cell_name)
+    print cell_obj
     scheduleData = DataPool(\
                 series = [{'options':{
-                            'source':busyHourDaily.objects.all()},
+                            'source':RoundClock.objects.filter(cell_name=cell_name)},
                            'terms': [
-                            'startHour',
+                            'hour',
                             'density']}
                           ])
     cht = Chart(
@@ -93,7 +108,7 @@ def schedule_chart(request):
             'type': 'line',
             'stacking':False},
           'terms':{
-            'startHour':[
+            'hour':[
                 'density']
                 }}],
         chart_options = 

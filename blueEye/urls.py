@@ -13,6 +13,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^showSchedule/$', views.showSchedule, name='showSchedule'),
+    url(r'^neighborInfo/$', views.neighborInfo, name='neighborInfo'),
     url(r'^showSchedule/change/(?P<cell_name>\w+)/(?P<pk>\d+)/$', views.changeSchedule, name='changeSchedule'),
     url(r'^showSchedule/delete/(?P<cell_name>\w+)/(?P<pk>\d+)/$', views.deleteSchedule, name='deleteSchedule'),
     url(r'^showSchedule/save/$', views.saveSchedule, name='saveSchedule'),
