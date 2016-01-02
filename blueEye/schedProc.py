@@ -5,10 +5,54 @@ import logging
     
 logging.basicConfig(format='%(asctime)s {%(filename)s: %(lineno)d} %(funcName)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
 
+def setDefaultSched(cell_obj):
+    busyHour = busyHourDaily()
+    busyHour.busyHour = cell_obj
+    busyHour.startHour = 0
+    busyHour.endHour = 5
+    busyHour.density = 20
+    busyHour.save()
+    busyHour = busyHourDaily()
+    busyHour.busyHour = cell_obj
+    busyHour.startHour = 5
+    busyHour.endHour = 8
+    busyHour.density = 40
+    busyHour.save()
+    busyHour = busyHourDaily()
+    busyHour.busyHour = cell_obj
+    busyHour.startHour = 8
+    busyHour.endHour = 12
+    busyHour.density = 99
+    busyHour.save()
+    busyHour = busyHourDaily()
+    busyHour.busyHour = cell_obj
+    busyHour.startHour = 12
+    busyHour.endHour = 16
+    busyHour.density = 60
+    busyHour.save()
+    busyHour = busyHourDaily()
+    busyHour.busyHour = cell_obj
+    busyHour.startHour = 16 
+    busyHour.endHour = 21
+    busyHour.density = 99
+    busyHour.save()
+    busyHour = busyHourDaily()
+    busyHour.busyHour = cell_obj
+    busyHour.startHour = 21 
+    busyHour.endHour = 24
+    busyHour.density = 50
+    busyHour.save()
+    setRoundClock(cell_obj)
+
+
 def reArrangeSched(elem, cell_obj):
     clockdict = {}
     logging.info("Inside ReArrange")
     busyHourList = busyHourDaily.objects.filter(busyHour=cell_obj.cell_name)
+    if not busyHourList:
+        logging.info("Setting default values")
+        setDefaultSched(cell_obj)
+        return
     for hour in range(0,24):
         clockdict[hour] = (999, -1)
     for sched in busyHourList:
@@ -76,6 +120,12 @@ def reArrangeSched(elem, cell_obj):
         if sched.id not in idlist:
             logging.error("Deleting sched id %d", sched.id)
             sched.delete()
+    setRoundClock(cell_obj)
+
+
+def setRoundClock(cell_obj):
+    clockdict = {}
+    busyHourList = busyHourDaily.objects.filter(busyHour=cell_obj.cell_name)
     for sched in busyHourList:
         for hour in range(sched.startHour, sched.endHour):
             clockdict[hour] = (sched.density, sched.id) 
@@ -83,7 +133,10 @@ def reArrangeSched(elem, cell_obj):
     for rc in roundClock:
         rc.delete()
     for hour in range(0,24):
-        den, id = clockdict[hour]
+        try:
+            den, id = clockdict[hour]
+        except:
+            den = 99
         if den == 999:
             den = 99
         rc = RoundClock.objects.create(cell_name=cell_obj.cell_name, hour=hour, density=den )

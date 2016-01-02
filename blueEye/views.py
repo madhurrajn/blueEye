@@ -99,6 +99,9 @@ def showSchedule(request):
     if request.method == 'POST':
         cell_name = request.POST.get("CellName", "")
         busyHourList = busyHourDaily.objects.filter(busyHour=cell_name)
+        if len(busyHourList) == 0:
+            cell_obj = CellInfo.objects.get(cell_name=cell_name)
+            reArrangeSched(0, cell_obj)
     sched_chart = schedule_chart(request,cell_name)
     print sched_chart.datasource
     context = RequestContext(request, 
@@ -136,20 +139,20 @@ def index(request):
                     obj.delete()
     compare_cells = CompareCell.objects.all()
     template = loader.get_template('blueEye/index.html')
-    cellsfound = getCellBeamForm(False)
+    compareCells = getCellBeamForm(True)
     celldict = []
     cellCompare = []
+    if compareCells:
+        cellCompare = compareCells.items()
+    for key,cell in cellCompare:
+        cellinfo.append(cell)
+    cellsfound = getCellBeamForm(False)
     if cellsfound:
         celldict = cellsfound.items()
     cell_list=[]
     for cell in compare_cells:
         cell_list.append(cell.cell_name)
     for key,cell in celldict:
-        cellinfo.append(cell)
-    compareCells = getCellBeamForm(True)
-    if compareCells:
-        cellCompare = compareCells.items()
-    for key,cell in cellCompare:
         cellinfo.append(cell)
     context = RequestContext(request, {
         'cellinfo': cellinfo,
