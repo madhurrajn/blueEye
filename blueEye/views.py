@@ -5,6 +5,7 @@ from django.template import RequestContext, loader
 from django.http import HttpResponse
 from .core import getCellBeamForm, getNeighbors
 from schedProc import reArrangeSched, schedule_chart
+from efficiency import getNeighborEffciency
 import logging
 
 # Create your views here.
@@ -100,8 +101,11 @@ def showSchedule(request):
         cell_name = request.POST.get("CellName", "")
         busyHourList = busyHourDaily.objects.filter(busyHour=cell_name)
         if len(busyHourList) == 0:
-            cell_obj = CellInfo.objects.get(cell_name=cell_name)
-            reArrangeSched(0, cell_obj)
+            try:
+                cell_obj = CellInfo.objects.get(cell_name=cell_name)
+                reArrangeSched(0, cell_obj)
+            except:
+                cell_obj=""
     sched_chart = schedule_chart(request,cell_name)
     print sched_chart.datasource
     context = RequestContext(request, 
@@ -171,6 +175,21 @@ def neighborInfo(request):
         'pivotCell': pivotCell,
         'neighbor_list': neighbor_list})
     return HttpResponse(template.render(context))
+
+def efficiency(request):
+    template = loader.get_template('blueEye/efficiency.html')
+    cell_name = ""
+    cosector_cells = []
+    efficiency_list = []
+    print "Here"
+    if request.method == 'POST':
+        cell_name = request.POST.get("CellName", "")
+        cosector_cells,efficiency_list = getNeighborEffciency(cell_name)
+    context = RequestContext(request, {
+        'cosector_cells': cosector_cells,
+        'efficiency_list': efficiency_list})
+    return HttpResponse(template.render(context))
+
 
 def empty(request):
     return HttpResponse('')

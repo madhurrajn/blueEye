@@ -1,0 +1,58 @@
+{% extends 'base.html' %} 
+{% load staticfiles %}
+{% load chartit %}
+{{ sched_chart }}
+<body>
+{% block heading %}<div> Normal Map </div> {% endblock %}
+{% block extrajs %}
+{% endblock %}
+{% block rootcontainer %}    
+<style>
+#sf {background: url('http://static.tumblr.com/f1skqpy/Oxbn13qun/search_icon.png') #f5f5f5 left center no-repeat; background-size: 20px 20px;}
+#schedulestyle {margin-top:10% ; margin-left:25%}
+#schedLeftPanel {margin-top:0; width:20%}
+</style>
+<div id="schedulestyle">
+<form action="{% url 'blueEye:efficiency' %}" method="post" class="sfm" name="theform">
+    {% csrf_token %}
+    <input type="text" name="CellName" value="" id="sf"/>
+    <input type="submit" value="Search" id="sb"/>
+</form>
+<div>
+    {% if cosector_cells %}
+    <table class="zui-table zui-table-horizontal zui-table-highlight zui-table-zebra zui-table-rounded">
+        <thead>
+            <tr>
+                <th>
+                    Hour
+                </th>
+    {% for cell in cosector_cells %}
+                <th>
+                    {{cell.cell_name}}
+                </th>
+      {% endfor %}
+             </tr>
+        </thead>
+        <tbody>
+        {% for hour,efficiency  in efficiency_list.items %}
+            {{elem}}
+            <tr>
+                <td>
+                {{ hour }}
+                </td>
+                {% for elem  in efficiency.cell_list  %}
+                {% for item in elem %}
+                <td>
+                    {{item}}
+                </td>
+                {% endfor %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+</div>
+{% endblock %}
+</body>

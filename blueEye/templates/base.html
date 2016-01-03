@@ -62,15 +62,14 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
               <ul class="nav navbar-nav navbar-right">
                   {% if user.is_authenticated %}
-                    <li><a href="{% url 'blueEye:addNewCell' %}">
-                        <span class="fa fa-plus"></span>&nbsp;New Cell</a>
-                    </li>
-
                     <li><a href="{% url 'blueEye:showSchedule' %}">
                         <span class="fa fa-th"></span>&nbsp;Schedule</a>
                     </li>
                     <li><a href="{% url 'blueEye:neighborInfo' %}">
                         <span class="fa fa-th"></span>&nbsp;NeighborInfo</a>
+                    </li>
+                    <li><a href="{% url 'blueEye:efficiency' %}">
+                        <span class="fa fa-plus"></span>&nbsp;PowerEfficiency</a>
                     </li>
 
                     <li class="dropdown">
