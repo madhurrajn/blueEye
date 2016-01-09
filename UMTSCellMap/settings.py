@@ -43,7 +43,7 @@ INSTALLED_APPS = (
     'chartit',
     'simplejson',
     'polls',
-    'blueEye',
+    'blueEye'
 )
 
 MIDDLEWARE_CLASSES = (

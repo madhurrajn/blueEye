@@ -12,6 +12,12 @@ class cellState():
     CELL_OFF = 2
     CELL_UP = 3
 
+class CellState:
+    def __init__(self, den, cell_name, state):
+        self.density = den
+        self.cell_name = cell_name
+        self.state = state
+
 class Efficiency:
     def __init__(self):
         self.density = 0
@@ -43,12 +49,12 @@ def getEfficientyList(pivot, cosector_list):
         for rc in rc_list:
             try:
                 efficiency[rc.hour].density += rc.density
-                efficiency[rc.hour].cell_list.append((rc.density, rc.cell_name, cellState.CELL_ON))
+                efficiency[rc.hour].cell_list.append(CellState(rc.density, rc.cell_name, cellState.CELL_ON))
                 logging.debug("Adding density %d to efficiency list at %d hour", rc.density, rc.hour)
             except:
                 efficiency[rc.hour] = Efficiency()
                 efficiency[rc.hour].density = rc.density
-                efficiency[rc.hour].cell_list.append((rc.density, rc.cell_name, cellState.CELL_ON))
+                efficiency[rc.hour].cell_list.append(CellState(rc.density, rc.cell_name, cellState.CELL_ON))
                 logging.debug("Adding density %d to efficiency list at %d hour", rc.density, rc.hour)
         try:
             sorted(efficiency[rc.hour].cell_list,  key=lambda x:x[0])
@@ -63,13 +69,13 @@ def processEfficiency(round_clock, efficienty_list):
         capacity_av = (CELL_MAX_CAPACITY*count)-efficiency.density
         density = efficiency.density
         debt = 0
-        for idx, (den, cell_name, state) in enumerate(efficiency.cell_list):
-            diff = CELL_MAX_CAPACITY - den;
+        for idx, cell_state in enumerate(efficiency.cell_list):
+            diff = CELL_MAX_CAPACITY - cell_state.density;
             if capacity_av > diff:
-                efficiency.cell_list[idx] = (den, cell_name, cellState.CELL_OFF)
+                efficiency.cell_list[idx].state = cellState.CELL_OFF
                 count -= 1
-                capacity_av = capacity_av - CELL_MAX_CAPACITY - den
-                logging.debug("Cell %s has been turned off", cell_name)
+                capacity_av = capacity_av - CELL_MAX_CAPACITY - cell_state.density
+                logging.debug("Cell %s has been turned off", cell_state.cell_name)
             
 
 def getNeighborEffciency(cell_name):

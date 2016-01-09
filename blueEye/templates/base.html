@@ -13,7 +13,8 @@
         <title>{% block title %}BlueEye : Advanced Son| {{ site_name }}{% endblock %}</title>
 
         <!-- CSS -->
-        <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link href="{% static 'bootstrap/css/madhur.css' %}" rel="stylesheet">
         <link href="{% static 'bootstrap/css/bootstrap-theme.css' %}" rel="stylesheet">
         <link href="{% static 'bootstrap/css/sticky-footer-navbar.css' %}" rel="stylesheet">
         <link href="{% static 'datetimepicker/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
@@ -38,6 +39,7 @@
     </head>
 
     <body>
+  <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
             <div class="navbar-header">
@@ -132,13 +134,15 @@
 
         <!-- JavaScript -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="{% static 'momentjs/moment.min.js' %}"></script>
         <script src="{% static 'datetimepicker/js/bootstrap-datetimepicker.min.js' %}"></script>
         <script src="{% static 'jquery/jquery.min.js' %}"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
         <script src="{% static 'jquery-validation/jquery.validate.js' %}"></script>
         <script src="{% static 'highcharts/js/highcharts.js' %}"></script>
+
         {% block extrajs %}{% endblock %}
         {% block rootcontainer %}
         {% endblock %}
@@ -172,5 +176,22 @@
        </script>
 
        {% block extrajsexternal %}{% endblock %}
+  <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+  <script>
+  $(function(){
+    $("#example").dataTable();
+  })
+  $(function(){
+    $("#example1").dataTable();
+  })
+  $(function(){
+    $("#example2").dataTable();
+  })
+
+
+
+  </script>
+
+
     </body>
 </html>

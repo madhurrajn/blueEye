@@ -168,8 +168,10 @@ def neighborInfo(request):
     cell_name = ""
     pivotCell = ""
     neighbor_list = []
+    logging.debug("Fetching Neighbor Info")
     if request.method == 'POST':
         cell_name = request.POST.get("CellName", "")
+        logging.debug("Fetching Neighbor Info %s", cell_name)
         pivotCell,neighbor_list = getNeighbors(cell_name)
     context = RequestContext(request, {
         'pivotCell': pivotCell,
@@ -181,13 +183,17 @@ def efficiency(request):
     cell_name = ""
     cosector_cells = []
     efficiency_list = []
+    neighbor_list = []
     print "Here"
     if request.method == 'POST':
         cell_name = request.POST.get("CellName", "")
         cosector_cells,efficiency_list = getNeighborEffciency(cell_name)
+        pivotCell,neighbor_list = getNeighbors(cell_name)
     context = RequestContext(request, {
         'cosector_cells': cosector_cells,
-        'efficiency_list': efficiency_list})
+        'efficiency_list': efficiency_list,
+        'neighbor_list': neighbor_list,
+        'cell_name':cell_name})
     return HttpResponse(template.render(context))
 
 

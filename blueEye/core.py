@@ -227,12 +227,15 @@ def getNeighbors(cell_name):
     neighbor_list = []
     cell_list = CellInfo.objects.all()
     cells_g.clear()
-    try:
-        pivot = cells_g[cell_name]
-    except:
-        return(0,0)
     for cell in cell_list:
         cells_g[str(cell.cell_name)]=Cell(cell.cell_name, cell.lattitude, cell.longitude, cell.azimuth, cell.beamwidth, cell.radius, cell.uarfcn, cell.radius)
+    try:
+        logging.debug("Neighbor Cell Search for %s", cell_name)
+        pivot = cells_g[cell_name]
+    except:
+        print "Exception"
+        return(0,0)
+    logging.debug("Generating Beam Form")
     pivot.geo.generate_beam_form()
     for key, cell in cells_g.items():
         if key == cell_name:
