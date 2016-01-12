@@ -5,7 +5,7 @@ from django.template import RequestContext, loader
 from django.http import HttpResponse
 from .core import getCellBeamForm, getNeighbors
 from schedProc import reArrangeSched, schedule_chart
-from efficiency import getNeighborEffciency
+from efficiency import getNeighborEffciency, efficiency_sched_chart
 import logging
 
 # Create your views here.
@@ -184,16 +184,19 @@ def efficiency(request):
     cosector_cells = []
     efficiency_list = []
     neighbor_list = []
+    cht = ""
     print "Here"
     if request.method == 'POST':
         cell_name = request.POST.get("CellName", "")
         cosector_cells,efficiency_list = getNeighborEffciency(cell_name)
         pivotCell,neighbor_list = getNeighbors(cell_name)
+        cht = efficiency_sched_chart(cosector_cells)
     context = RequestContext(request, {
         'cosector_cells': cosector_cells,
         'efficiency_list': efficiency_list,
         'neighbor_list': neighbor_list,
-        'cell_name':cell_name})
+        'cell_name':cell_name,
+        'efficiency_chart':cht})
     return HttpResponse(template.render(context))
 
 

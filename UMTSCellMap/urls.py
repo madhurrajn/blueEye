@@ -19,5 +19,6 @@ from blueEye.admin import admin_site
 urlpatterns = [
     url(r'^polls/', include('polls.urls', namespace="polls")),
     url(r'^blueEye/', include('blueEye.urls', namespace="blueEye")),
+    url(r'^blueEye/blueadmin/', include(admin_site.urls)),
     url(r'^blueadmin/', include(admin_site.urls)),
 ]

@@ -3,7 +3,7 @@
 {% load chartit %}
 {% load index %}
 {% load custom_func %}
-{{ sched_chart }}
+{{ efficiency_chart }}
 
 <body>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -63,9 +63,15 @@ $(document).ready(function() {
   <li class="active"><a data-toggle="tab" href="#home">Efficiency Table</a></li>
   <li><a data-toggle="tab" href="#menu1">CoSector Cells</a></li>
   <li><a data-toggle="tab" href="#menu2">Neighbor List</a></li>
+  <li><a data-toggle="tab" href="#menu3">Efficiency Chart</a></li>
 </ul>
 
 <div class="tab-content">
+
+<div id="menu3" class="tab-pane fade">
+<div id='efficiency_chart'>{{efficiency_chart|load_charts:'efficiency_chart'}}<p>Iam here</p></div>
+</div>
+
 <div id="menu1" class="tab-pane fade">
 <p>
 <table id="example" class="zui-table">

@@ -1,7 +1,9 @@
 from collections import defaultdict
+from chartit import PivotDataPool, Chart, PivotChart
 from .models import CellInfo, RoundClock
 import logging
 import bisect
+from django.db.models import Sum
 
 CELL_MAX_CAPACITY = 99
 
@@ -91,3 +93,33 @@ def getNeighborEffciency(cell_name):
     processEfficiency(round_clock, efficienty_list)
     return cosector_list,efficienty_list
 
+def efficiency_sched_chart(cosector_list):
+    series = []
+    for cell in cosector_list:
+        series.append(cell.cell_name)
+    elems = RoundClock.objects.filter(cell_name__in=['BGL10', 'BGL15'])
+    print "Madhur here"
+    print elems
+    chart_elem = [{'options':{
+                    'source':RoundClock.objects.filter(cell_name__in=series).extra(select={'hour_id':'CAST(hour AS UNSIGNED)'}).extra(order_by=['hour_id']),
+                    'categories':'hour',
+                    'legend_by':'cell_name'},
+                    'terms': {
+                    'density':Sum('density')}}]
+
+    scheduleData = PivotDataPool(series = chart_elem)
+    cht = PivotChart(
+        datasource = scheduleData,
+        series_options =
+        [{'options':{
+            'type': 'column',
+            'stacking':True},
+          'terms':['density']
+                }],
+        chart_options = 
+          {'title': {
+            'text': 'Schedule '},
+            'xAxis': {
+                'title':{
+                    'text': 'Hourly Clock'}} })
+    return cht;

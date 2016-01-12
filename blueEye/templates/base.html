@@ -92,13 +92,13 @@
                         {{ user }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                       <li><a href="{% url 'blueEye:empty' %}">Account Settings</a></li>
-                      <li><a href="{% url 'blueEye:empty' %}">Change Password</a></li>
+                      <li><a href="{% url 'blueadmin:password_change' %}">Change Password</a></li>
                       <li class="divider"></li>
                       <li><a href="{% url 'blueEye:empty' %}">Import Data from CSV</a></li>
                       <li class="divider"></li>
                       <li><a href="{% url 'blueEye:empty' %}">Help</a></li>
                       <li class="divider"></li>
-                      <li><a href="{% url 'blueEye:empty' %}">Log Out</a></li>
+                      <li><a href="{% url 'blueadmin:logout' %}">Log Out</a></li>
                     </ul>
                     </li>
                   {% else %}

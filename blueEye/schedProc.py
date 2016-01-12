@@ -144,9 +144,6 @@ def setRoundClock(cell_obj):
 
 
 def schedule_chart(request, cell_name):
-    logging.debug("Getting chart for %s", cell_name)
-    cell_obj = RoundClock.objects.filter(cell_name=cell_name)
-    print cell_obj
     scheduleData = DataPool(\
                 series = [{'options':{
                             'source':RoundClock.objects.filter(cell_name=cell_name)},
