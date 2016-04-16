@@ -13,8 +13,10 @@ grep: ./.git/objects/01: Is a directory
 grep: ./.git/objects/02: Is a directory
 grep: ./.git/objects/03: Is a directory
 grep: ./.git/objects/04: Is a directory
+grep: ./.git/objects/05: Is a directory
 grep: ./.git/objects/06: Is a directory
 grep: ./.git/objects/07: Is a directory
+grep: ./.git/objects/08: Is a directory
 grep: ./.git/objects/09: Is a directory
 grep: ./.git/objects/0a: Is a directory
 grep: ./.git/objects/0b: Is a directory
@@ -36,6 +38,7 @@ grep: ./.git/objects/1c: Is a directory
 grep: ./.git/objects/1d: Is a directory
 grep: ./.git/objects/1e: Is a directory
 grep: ./.git/objects/1f: Is a directory
+grep: ./.git/objects/20: Is a directory
 grep: ./.git/objects/21: Is a directory
 grep: ./.git/objects/22: Is a directory
 grep: ./.git/objects/23: Is a directory
@@ -57,6 +60,7 @@ grep: ./.git/objects/32: Is a directory
 grep: ./.git/objects/33: Is a directory
 grep: ./.git/objects/35: Is a directory
 grep: ./.git/objects/36: Is a directory
+grep: ./.git/objects/37: Is a directory
 grep: ./.git/objects/38: Is a directory
 grep: ./.git/objects/39: Is a directory
 grep: ./.git/objects/3a: Is a directory
@@ -76,8 +80,10 @@ grep: ./.git/objects/4a: Is a directory
 grep: ./.git/objects/4b: Is a directory
 grep: ./.git/objects/4c: Is a directory
 grep: ./.git/objects/4d: Is a directory
+grep: ./.git/objects/4e: Is a directory
 grep: ./.git/objects/4f: Is a directory
 grep: ./.git/objects/50: Is a directory
+grep: ./.git/objects/51: Is a directory
 grep: ./.git/objects/52: Is a directory
 grep: ./.git/objects/54: Is a directory
 grep: ./.git/objects/55: Is a directory
@@ -86,6 +92,7 @@ grep: ./.git/objects/57: Is a directory
 grep: ./.git/objects/59: Is a directory
 grep: ./.git/objects/5a: Is a directory
 grep: ./.git/objects/5b: Is a directory
+grep: ./.git/objects/5c: Is a directory
 grep: ./.git/objects/5d: Is a directory
 grep: ./.git/objects/5e: Is a directory
 grep: ./.git/objects/5f: Is a directory
@@ -142,6 +149,7 @@ grep: ./.git/objects/95: Is a directory
 grep: ./.git/objects/97: Is a directory
 grep: ./.git/objects/98: Is a directory
 grep: ./.git/objects/99: Is a directory
+grep: ./.git/objects/9a: Is a directory
 grep: ./.git/objects/9b: Is a directory
 grep: ./.git/objects/9c: Is a directory
 grep: ./.git/objects/9d: Is a directory
@@ -165,6 +173,7 @@ grep: ./.git/objects/b2: Is a directory
 grep: ./.git/objects/b4: Is a directory
 grep: ./.git/objects/b5: Is a directory
 grep: ./.git/objects/b6: Is a directory
+grep: ./.git/objects/b7: Is a directory
 grep: ./.git/objects/b8: Is a directory
 grep: ./.git/objects/b9: Is a directory
 grep: ./.git/objects/ba: Is a directory
@@ -177,6 +186,7 @@ grep: ./.git/objects/c0: Is a directory
 grep: ./.git/objects/c1: Is a directory
 grep: ./.git/objects/c2: Is a directory
 grep: ./.git/objects/c3: Is a directory
+grep: ./.git/objects/c4: Is a directory
 grep: ./.git/objects/c7: Is a directory
 grep: ./.git/objects/c9: Is a directory
 grep: ./.git/objects/ca: Is a directory
@@ -216,6 +226,7 @@ grep: ./.git/objects/ef: Is a directory
 grep: ./.git/objects/f0: Is a directory
 grep: ./.git/objects/f1: Is a directory
 grep: ./.git/objects/f2: Is a directory
+grep: ./.git/objects/f3: Is a directory
 grep: ./.git/objects/f4: Is a directory
 grep: ./.git/objects/f5: Is a directory
 grep: ./.git/objects/f6: Is a directory
@@ -238,6 +249,7 @@ grep: ./.idea: Is a directory
 grep: ./.idea/dictionaries: Is a directory
 grep: ./blueEye: Is a directory
 grep: ./blueEye/migrations: Is a directory
+grep: ./blueEye/migrations.old: Is a directory
 grep: ./blueEye/static: Is a directory
 grep: ./blueEye/static/bootstrap: Is a directory
 grep: ./blueEye/static/bootstrap/css: Is a directory
@@ -344,10 +356,18 @@ grep: ./blueEye/templates: Is a directory
 grep: ./blueEye/templates/admin: Is a directory
 grep: ./blueEye/templates/admin/blueEye: Is a directory
 grep: ./blueEye/templates/blueEye: Is a directory
+grep: ./blueEye/templatetags: Is a directory
 grep: ./polls: Is a directory
 grep: ./polls/migrations: Is a directory
 grep: ./polls/templates: Is a directory
 grep: ./polls/templates/polls: Is a directory
+grep: ./polls/templatetags: Is a directory
+grep: ./startnow: Is a directory
+grep: ./startnow/migrations: Is a directory
+grep: ./startnow/templates: Is a directory
+grep: ./startnow/templates/admin: Is a directory
+grep: ./startnow/templates/admin/blueEye: Is a directory
+grep: ./startnow/templates/startnow: Is a directory
 grep: ./static: Is a directory
 grep: ./static/bootstrap: Is a directory
 grep: ./static/bootstrap/css: Is a directory

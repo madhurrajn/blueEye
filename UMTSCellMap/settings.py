@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'chartit',
     'simplejson',
     'polls',
+    'startnow',
     'blueEye'
 )
 

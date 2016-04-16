@@ -1,28 +1,60 @@
-grep: .: Is a directory
-grep: ./.idea: Is a directory
-grep: ./.idea/dictionaries: Is a directory
-grep: ./blueEye: Is a directory
-grep: ./blueEye/migrations: Is a directory
-grep: ./blueEye/static: Is a directory
-grep: ./blueEye/static/bootstrap: Is a directory
-grep: ./blueEye/static/bootstrap/css: Is a directory
-grep: ./blueEye/templates: Is a directory
-grep: ./blueEye/templates/admin: Is a directory
-grep: ./blueEye/templates/admin/blueEye: Is a directory
-grep: ./blueEye/templates/blueEye: Is a directory
-grep: ./polls: Is a directory
-grep: ./polls/migrations: Is a directory
-grep: ./polls/templates: Is a directory
-grep: ./polls/templates/polls: Is a directory
-grep: ./static: Is a directory
-grep: ./static/bootstrap: Is a directory
-grep: ./static/bootstrap/css: Is a directory
-grep: ./static/font-awesome: Is a directory
-grep: ./static/font-awesome/css: Is a directory
-grep: ./static/font-awesome/fonts: Is a directory
-grep: ./static/font-awesome/less: Is a directory
-grep: ./static/font-awesome/scss: Is a directory
-grep: ./static/images: Is a directory
-grep: ./static/images/icons: Is a directory
-grep: ./static/images/screenshots: Is a directory
-grep: ./UMTSCellMap: Is a directory
+./.git/hooks/prepare-commit-msg.sample:# ,|template,)
+Binary file ./.git/index matches
+./.idea/workspace.xml:        <entry file="file://$PROJECT_DIR$/blueEye/templates/blueEye/index.html">
+./.idea/workspace.xml:        <option value="$PROJECT_DIR$/blueEye/templates/blueEye/index.html" />
+./.idea/workspace.xml:              <option name="myItemId" value="templates" />
+./.idea/workspace.xml:              <option name="myItemId" value="templates" />
+./.idea/workspace.xml:    <entry file="file://$PROJECT_DIR$/blueEye/templates/blueEye/index.html">
+./.idea/workspace.xml:    <entry file="file://$PROJECT_DIR$/blueEye/templates/blueEye/index.html">
+./.idea/workspace.xml:    <entry file="file://$PROJECT_DIR$/blueEye/templates/blueEye/index.html">
+Binary file ./blueEye/.views.py.swp matches
+./blueEye/static/bootstrap/css/bootstrap.css:template {
+./blueEye/static/bootstrap/css/sticky-footer-navbar.css:/* Not required for template or sticky footer method. */
+Binary file ./blueEye/templatetags/__init__.pyc matches
+./blueEye/templatetags/custom_func.py:from django import template
+./blueEye/templatetags/custom_func.py:register = template.Library()
+Binary file ./blueEye/templatetags/custom_func.pyc matches
+./blueEye/templatetags/index.py:from django import template
+./blueEye/templatetags/index.py:register = template.Library()
+Binary file ./blueEye/templatetags/index.pyc matches
+./blueEye/views.py:from django.template import RequestContext, loader
+./blueEye/views.py:    template = loader.get_template('blueEye/showSchedule.html')
+./blueEye/views.py:    return HttpResponse(template.render(context))
+./blueEye/views.py:    template = loader.get_template('blueEye/showSchedule.html')
+./blueEye/views.py:    return HttpResponse(template.render(context))
+./blueEye/views.py:    template = loader.get_template('blueEye/showSchedule.html')
+./blueEye/views.py:    return HttpResponse(template.render(context))
+./blueEye/views.py:    template = loader.get_template('blueEye/showSchedule.html')
+./blueEye/views.py:    return HttpResponse(template.render(context))
+./blueEye/views.py:    template = loader.get_template('blueEye/showSchedule.html')
+./blueEye/views.py:    return HttpResponse(template.render(context))
+./blueEye/views.py:    template = loader.get_template('blueEye/index.html')
+./blueEye/views.py:    return HttpResponse(template.render(context))
+./blueEye/views.py:    template = loader.get_template('blueEye/neighborInfo.html')
+./blueEye/views.py:    return HttpResponse(template.render(context))
+./blueEye/views.py:    template = loader.get_template('blueEye/efficiency.html')
+./blueEye/views.py:    return HttpResponse(template.render(context))
+Binary file ./blueEye/views.pyc matches
+./err:grep: ./blueEye/templates: Is a directory
+./err:grep: ./blueEye/templates/admin: Is a directory
+./err:grep: ./blueEye/templates/admin/blueEye: Is a directory
+./err:grep: ./blueEye/templates/blueEye: Is a directory
+./err:grep: ./blueEye/templatetags: Is a directory
+./polls/templatetags/custom_func.py:from django import template
+./polls/templatetags/custom_func.py:register = template.Library()
+./polls/views.py:from django.template import RequestContext, loader
+./polls/views.py:    template = loader.get_template('polls/index.html')
+./polls/views.py:    return HttpResponse(template.render(context))
+Binary file ./polls/views.pyc matches
+Binary file ./startnow/.views.py.swp matches
+Binary file ./startnow/templates/startnow/.index.html.swp matches
+./startnow/views.py:from django.template import RequestContext, loader
+./startnow/views.py:    template = loader.get_template('startnow/index.html')
+./startnow/views.py:    return HttpResponse(template.render())
+Binary file ./startnow/views.pyc matches
+./static/bootstrap/css/bootstrap.css:template {
+./static/bootstrap/css/sticky-footer-navbar.css:/* Not required for template or sticky footer method. */
+./UMTSCellMap/settings.py:        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+./UMTSCellMap/settings.py:                'django.template.context_processors.debug',
+./UMTSCellMap/settings.py:                'django.template.context_processors.request',
+Binary file ./UMTSCellMap/settings.pyc matches
