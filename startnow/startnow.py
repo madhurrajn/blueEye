@@ -1,5 +1,6 @@
 import logging
 import json
+import datetime
 ''' Local Modules '''
 from url_processor import UrlProcessor
 from request_processor import RequestProcessor
@@ -30,5 +31,8 @@ class Scheduler:
         logger.info("Processing URL List {}".format(url_list))
         if len(url_list) > 0:
             request_processor = RequestProcessor(url_list)
-            resp = request_processor.process_requests()
+            resp = request_processor.process_requests(url_list)
             print resp
+            for ts_epoch, duration in resp:
+                print datetime.datetime.fromtimestamp(ts_epoch).strftime('%Y-%m-%d %H:%M:%S'), duration
+

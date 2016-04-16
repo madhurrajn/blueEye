@@ -37,7 +37,7 @@ class UrlProcessor:
         for i in range(1,count):    
             logger.info("Processing url {}".format(i))
             url_str = self.update_time_in_url(url, actual_time)
-            url_list.append(url_str)
+            url_list.append((actual_time,url_str))
             actual_time = actual_time + delta
         return url_list
 
