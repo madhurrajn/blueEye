@@ -15,7 +15,11 @@ def handlePostMethod(request):
 
 def index(request):
     if request.method == 'POST':
-        handlePostMethod(request)
+        list = handlePostMethod(request)
+        template = loader.get_template('startnow/dir.html')
+        context = RequestContext(request, {
+            'sched_list':list})
+        return HttpResponse(template.render(context))
     else:
         template = loader.get_template('startnow/index.html')
         context = RequestContext(request)

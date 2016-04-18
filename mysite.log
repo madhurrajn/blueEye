@@ -1646,3 +1646,104 @@ Traceback (most recent call last):
   File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/handlers/base.py", line 151, in get_response
     % (callback.__module__, view_name))
 ValueError: The view startnow.views.index didn't return an HttpResponse object. It returned None instead.
+[16/Apr/2016 13:15:02] DEBUG [django.db.backends:89] (0.002) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[16/Apr/2016 13:15:02] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[16/Apr/2016 13:15:27] ERROR [django.request:256] Internal Server Error: /startnow/
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/handlers/base.py", line 151, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view startnow.views.index didn't return an HttpResponse object. It returned None instead.
+[16/Apr/2016 13:24:13] ERROR [django.request:256] Internal Server Error: /startnow/
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/handlers/base.py", line 151, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view startnow.views.index didn't return an HttpResponse object. It returned None instead.
+[16/Apr/2016 13:28:54] DEBUG [django.db.backends:89] (0.001) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[16/Apr/2016 13:28:54] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[16/Apr/2016 13:39:50] DEBUG [django.db.backends:89] (0.001) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[16/Apr/2016 13:39:50] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[16/Apr/2016 13:43:16] DEBUG [django.db.backends:89] (0.001) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[16/Apr/2016 13:43:16] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[16/Apr/2016 13:54:58] DEBUG [django.db.backends:89] (0.001) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[16/Apr/2016 13:54:58] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[16/Apr/2016 13:56:08] ERROR [django.request:256] Internal Server Error: /startnow/
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/madhurn/PycharmProjects/UMTSCellMap/startnow/views.py", line 18, in index
+    list = handlePostMethod(request)
+  File "/Users/madhurn/PycharmProjects/UMTSCellMap/startnow/views.py", line 14, in handlePostMethod
+    return (sched.get_schedule())
+  File "/Users/madhurn/PycharmProjects/UMTSCellMap/startnow/startnow.py", line 34, in get_schedule
+    resp = request_processor.process_requests(url_list)
+  File "/Users/madhurn/PycharmProjects/UMTSCellMap/startnow/request_processor.py", line 36, in process_requests
+    return (self.process_async_requests(url_list))
+  File "/Users/madhurn/PycharmProjects/UMTSCellMap/startnow/request_processor.py", line 30, in process_async_requests
+    result = pool.map(self.process_atomic_request, url_list)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/multiprocessing/pool.py", line 251, in map
+    return self.map_async(func, iterable, chunksize).get()
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/multiprocessing/pool.py", line 567, in get
+    raise self._value
+NameError: global name 'datetime' is not defined
+[16/Apr/2016 13:56:17] DEBUG [django.db.backends:89] (0.001) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[16/Apr/2016 13:56:17] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[16/Apr/2016 13:56:31] ERROR [django.request:256] Internal Server Error: /startnow/
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/madhurn/PycharmProjects/UMTSCellMap/startnow/views.py", line 18, in index
+    list = handlePostMethod(request)
+  File "/Users/madhurn/PycharmProjects/UMTSCellMap/startnow/views.py", line 14, in handlePostMethod
+    return (sched.get_schedule())
+  File "/Users/madhurn/PycharmProjects/UMTSCellMap/startnow/startnow.py", line 34, in get_schedule
+    resp = request_processor.process_requests(url_list)
+  File "/Users/madhurn/PycharmProjects/UMTSCellMap/startnow/request_processor.py", line 37, in process_requests
+    return (self.process_async_requests(url_list))
+  File "/Users/madhurn/PycharmProjects/UMTSCellMap/startnow/request_processor.py", line 31, in process_async_requests
+    result = pool.map(self.process_atomic_request, url_list)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/multiprocessing/pool.py", line 251, in map
+    return self.map_async(func, iterable, chunksize).get()
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/multiprocessing/pool.py", line 567, in get
+    raise self._value
+AttributeError: 'datetime.datetime' object has no attribute 'strftimea'
+[16/Apr/2016 13:56:42] DEBUG [django.db.backends:89] (0.001) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[16/Apr/2016 13:56:42] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[16/Apr/2016 13:56:54] ERROR [django.request:256] Internal Server Error: /startnow/
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/madhurn/PycharmProjects/UMTSCellMap/startnow/views.py", line 18, in index
+    list = handlePostMethod(request)
+  File "/Users/madhurn/PycharmProjects/UMTSCellMap/startnow/views.py", line 14, in handlePostMethod
+    return (sched.get_schedule())
+  File "/Users/madhurn/PycharmProjects/UMTSCellMap/startnow/startnow.py", line 37, in get_schedule
+    logger.info("{} {}".format(datetime.datetime.fromtimestamp(ts_epoch).strftime('%Y-%m-%d %H:%M:%S'), duration))
+TypeError: a float is required
+[16/Apr/2016 13:58:23] DEBUG [django.db.backends:89] (0.003) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[16/Apr/2016 13:58:23] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[16/Apr/2016 13:58:26] ERROR [django.request:256] Internal Server Error: /startnow/
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/handlers/base.py", line 119, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/urlresolvers.py", line 365, in resolve
+    for pattern in self.url_patterns:
+  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/urlresolvers.py", line 401, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/core/urlresolvers.py", line 395, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/madhurn/PycharmProjects/UMTSCellMap/UMTSCellMap/urls.py", line 24, in <module>
+    url(r'^startnow/', include('startnow.urls', namespace="startnow")),
+  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/django/conf/urls/__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/madhurn/PycharmProjects/UMTSCellMap/startnow/urls.py", line 3, in <module>
+    from views import empty
+  File "/Users/madhurn/PycharmProjects/UMTSCellMap/startnow/views.py", line 4, in <module>
+    from startnow import  Scheduler
+  File "/Users/madhurn/PycharmProjects/UMTSCellMap/startnow/startnow.py", line 37
+    logger.info("{} {}".ts_epoch, duration))
+                                           ^
+SyntaxError: invalid syntax

@@ -34,5 +34,7 @@ class Scheduler:
             resp = request_processor.process_requests(url_list)
             print resp
             for ts_epoch, duration in resp:
-                print datetime.datetime.fromtimestamp(ts_epoch).strftime('%Y-%m-%d %H:%M:%S'), duration
+                logger.info("{} {}".format(ts_epoch, duration))
+        return resp
+
 

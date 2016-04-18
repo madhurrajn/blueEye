@@ -2,6 +2,7 @@ import logging
 import ssl
 import simplejson
 import urllib2
+import datetime
 from multiprocessing.dummy import Pool as ThreadPool
 
 logger = logging.getLogger(__name__)
@@ -15,6 +16,7 @@ class RequestProcessor:
         context = ssl._create_unverified_context()
         response = simplejson.load(urllib2.urlopen(url, context=context))
         status = response['status']
+        utime =  datetime.datetime.fromtimestamp(atime).strftime('%Y-%m-%d %H:%M:%S')
         if status == "OK":
             logger.info("Response Successfull")
             row = response['rows']
@@ -22,7 +24,7 @@ class RequestProcessor:
                 elems = row_elem['elements']
                 for e in elems:
                     duration = e['duration_in_traffic']['text']
-        return (atime, duration)
+        return (utime, duration)
 
     def process_async_requests(self, url_list):
         pool = ThreadPool(len(url_list))
