@@ -32,7 +32,6 @@ class Scheduler:
         if len(url_list) > 0:
             request_processor = RequestProcessor(url_list)
             resp = request_processor.process_requests(url_list)
-            print resp
             for ts_epoch, duration in resp:
                 logger.info("{} {}".format(ts_epoch, duration))
         return resp

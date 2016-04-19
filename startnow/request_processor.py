@@ -27,7 +27,7 @@ class RequestProcessor:
         return (utime, duration)
 
     def process_async_requests(self, url_list):
-        pool = ThreadPool(len(url_list))
+        pool = ThreadPool(4)
         result = pool.map(self.process_atomic_request, url_list)
         pool.close()
         pool.join()

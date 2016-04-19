@@ -85,6 +85,7 @@ grep: ./.git/objects/4f: Is a directory
 grep: ./.git/objects/50: Is a directory
 grep: ./.git/objects/51: Is a directory
 grep: ./.git/objects/52: Is a directory
+grep: ./.git/objects/53: Is a directory
 grep: ./.git/objects/54: Is a directory
 grep: ./.git/objects/55: Is a directory
 grep: ./.git/objects/56: Is a directory
@@ -146,6 +147,7 @@ grep: ./.git/objects/91: Is a directory
 grep: ./.git/objects/92: Is a directory
 grep: ./.git/objects/94: Is a directory
 grep: ./.git/objects/95: Is a directory
+grep: ./.git/objects/96: Is a directory
 grep: ./.git/objects/97: Is a directory
 grep: ./.git/objects/98: Is a directory
 grep: ./.git/objects/99: Is a directory
@@ -206,6 +208,7 @@ grep: ./.git/objects/d7: Is a directory
 grep: ./.git/objects/d8: Is a directory
 grep: ./.git/objects/d9: Is a directory
 grep: ./.git/objects/da: Is a directory
+grep: ./.git/objects/db: Is a directory
 grep: ./.git/objects/dc: Is a directory
 grep: ./.git/objects/dd: Is a directory
 grep: ./.git/objects/de: Is a directory

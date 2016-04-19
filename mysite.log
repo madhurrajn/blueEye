@@ -1747,3 +1747,40 @@ Traceback (most recent call last):
     logger.info("{} {}".ts_epoch, duration))
                                            ^
 SyntaxError: invalid syntax
+[18/Apr/2016 05:35:13] DEBUG [django.db.backends:89] (0.003) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[18/Apr/2016 05:35:13] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[18/Apr/2016 06:18:01] DEBUG [django.db.backends:89] (0.002) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[18/Apr/2016 06:18:01] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[18/Apr/2016 06:21:16] DEBUG [django.db.backends:89] (0.002) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[18/Apr/2016 06:21:16] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[18/Apr/2016 06:21:18] WARNING [django.request:170] Not Found: /
+[18/Apr/2016 06:21:18] WARNING [django.request:170] Not Found: /favicon.ico
+[18/Apr/2016 06:21:38] WARNING [django.request:170] Not Found: /
+[18/Apr/2016 06:24:13] WARNING [django.request:98] Forbidden (CSRF cookie not set.): /startnow/
+[18/Apr/2016 06:24:43] WARNING [django.request:98] Forbidden (CSRF cookie not set.): /startnow/
+[18/Apr/2016 06:26:23] DEBUG [django.db.backends:89] (0.002) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[18/Apr/2016 06:26:23] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[18/Apr/2016 06:26:37] WARNING [django.request:98] Forbidden (CSRF cookie not set.): /startnow/
+[18/Apr/2016 06:26:43] DEBUG [django.db.backends:89] (0.001) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[18/Apr/2016 06:26:43] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[18/Apr/2016 06:36:20] DEBUG [django.db.backends:89] (0.001) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[18/Apr/2016 06:36:20] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[18/Apr/2016 06:36:36] WARNING [django.request:98] Forbidden (CSRF cookie not set.): /startnow/
+[18/Apr/2016 06:39:28] WARNING [django.request:98] Forbidden (CSRF cookie not set.): /startnow/
+[18/Apr/2016 06:40:34] WARNING [django.request:98] Forbidden (CSRF cookie not set.): /startnow/
+[18/Apr/2016 06:41:39] DEBUG [django.db.backends:89] (0.001) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[18/Apr/2016 06:41:39] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[18/Apr/2016 08:44:27] DEBUG [django.db.backends:89] (0.002) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[18/Apr/2016 08:44:27] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[19/Apr/2016 16:05:39] DEBUG [django.db.backends:89] (0.004) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[19/Apr/2016 16:05:39] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[19/Apr/2016 16:06:38] WARNING [django.request:170] Not Found: /
+[19/Apr/2016 16:06:38] WARNING [django.request:170] Not Found: /favicon.ico
+[19/Apr/2016 16:06:54] WARNING [django.request:98] Forbidden (CSRF cookie not set.): /startnow/
+[19/Apr/2016 16:09:23] DEBUG [django.db.backends:89] (0.002) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[19/Apr/2016 16:09:23] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[19/Apr/2016 16:09:30] WARNING [django.request:98] Forbidden (CSRF cookie not set.): /startnow/
+[19/Apr/2016 16:24:45] DEBUG [django.db.backends:89] (0.002) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[19/Apr/2016 16:24:45] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+[19/Apr/2016 17:08:45] DEBUG [django.db.backends:89] (0.002) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+[19/Apr/2016 17:08:45] DEBUG [django.db.backends:89] (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
